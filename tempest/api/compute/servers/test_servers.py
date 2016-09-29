@@ -47,6 +47,7 @@ class ServersTestJSON(base.BaseV2ComputeTest):
         # Verify the password is set correctly in the response
         self.assertEqual('testpassword', server['adminPass'])
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('8fea6be7-065e-47cf-89b8-496e6f96c699')
     def test_create_with_existing_server_name(self):
         # Creating a server with a name that already exists is allowed

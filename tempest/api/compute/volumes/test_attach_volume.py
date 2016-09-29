@@ -90,6 +90,7 @@ class AttachVolumeTestJSON(base.BaseV2ComputeTest):
         self.addCleanup(self._detach, server['id'], volume['id'])
         return volume
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('52e9045a-e90d-4c0d-9087-79d657faffff')
     def test_attach_detach_volume(self):
         # Stop and Start a server with an attached volume, ensuring that
@@ -140,6 +141,7 @@ class AttachVolumeTestJSON(base.BaseV2ComputeTest):
             partitions = linux_client.get_partitions()
             self.assertNotIn(device_name_to_match, partitions)
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('7fa563fe-f0f7-43eb-9e22-a1ece036b513')
     def test_list_get_volume_attachments(self):
         # Create Server, Volume and attach that Volume to Server

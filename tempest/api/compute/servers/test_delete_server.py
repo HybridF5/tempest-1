@@ -34,6 +34,7 @@ class DeleteServersTestJSON(base.BaseV2ComputeTest):
         super(DeleteServersTestJSON, cls).setup_clients()
         cls.client = cls.servers_client
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('9e6e0c87-3352-42f7-9faf-5d6210dbd159')
     def test_delete_server_while_in_building_state(self):
         # Delete a server while it's VM state is Building
@@ -41,6 +42,7 @@ class DeleteServersTestJSON(base.BaseV2ComputeTest):
         self.client.delete_server(server['id'])
         waiters.wait_for_server_termination(self.client, server['id'])
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('925fdfb4-5b13-47ea-ac8a-c36ae6fddb05')
     def test_delete_active_server(self):
         # Delete a server while it's VM state is Active
@@ -48,6 +50,7 @@ class DeleteServersTestJSON(base.BaseV2ComputeTest):
         self.client.delete_server(server['id'])
         waiters.wait_for_server_termination(self.client, server['id'])
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('546d368c-bb6c-4645-979a-83ed16f3a6be')
     def test_delete_server_while_in_shutoff_state(self):
         # Delete a server while it's VM state is Shutoff
@@ -102,6 +105,7 @@ class DeleteServersTestJSON(base.BaseV2ComputeTest):
         self.client.delete_server(server['id'])
         waiters.wait_for_server_termination(self.client, server['id'])
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('d0f3f0d6-d9b6-4a32-8da4-23015dcab23c')
     @test.services('volume')
     def test_delete_server_while_in_attached_volume(self):
@@ -137,6 +141,7 @@ class DeleteServersAdminTestJSON(base.BaseV2ComputeAdminTest):
         cls.non_admin_client = cls.servers_client
         cls.admin_client = cls.os_adm.servers_client
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('99774678-e072-49d1-9d2a-49a59bc56063')
     def test_delete_server_while_in_error_state(self):
         # Delete a server while it's VM state is error
@@ -150,6 +155,7 @@ class DeleteServersAdminTestJSON(base.BaseV2ComputeAdminTest):
                                             server['id'],
                                             ignore_error=True)
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('73177903-6737-4f27-a60c-379e8ae8cf48')
     def test_admin_delete_servers_of_others(self):
         # Administrator can delete servers of others

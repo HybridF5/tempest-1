@@ -53,7 +53,7 @@ class VolumesV2ActionsTest(base.BaseVolumeTest):
 
     @test.idempotent_id('fff42874-7db5-4487-a8e1-ddda5fb5288d')
     @test.stresstest(class_setup_per='process')
-    @test.attr(type='smoke')
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.services('compute')
     def test_attach_detach_volume_to_instance(self):
         # Create a server
@@ -72,6 +72,7 @@ class VolumesV2ActionsTest(base.BaseVolumeTest):
         waiters.wait_for_volume_status(self.client,
                                        self.volume['id'], 'available')
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('63e21b4c-0a0c-41f6-bfc3-7c2816815599')
     @testtools.skipUnless(CONF.volume_feature_enabled.bootable,
                           'Update bootable status of a volume is not enabled.')
@@ -86,6 +87,7 @@ class VolumesV2ActionsTest(base.BaseVolumeTest):
             bool_flag = self._is_true(fetched_volume['bootable'])
             self.assertEqual(bool_bootable, bool_flag)
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('9516a2c8-9135-488c-8dd6-5677a7e5f371')
     @test.stresstest(class_setup_per='process')
     @test.services('compute')
@@ -154,6 +156,7 @@ class VolumesV2ActionsTest(base.BaseVolumeTest):
     def _is_true(self, val):
         return val in ['true', 'True', True]
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('fff74e1e-5bd3-4b33-9ea9-24c103bc3f59')
     def test_volume_readonly_update(self):
         # Update volume readonly true

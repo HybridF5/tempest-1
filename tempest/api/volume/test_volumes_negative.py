@@ -36,7 +36,7 @@ class VolumesV2NegativeTest(base.BaseVolumeTest):
         cls.volume = cls.create_volume()
         cls.mountpoint = "/dev/vdc"
 
-    @test.attr(type=['negative'])
+    @test.attr(type=['negative', 'hybrid_smoke'])
     @test.idempotent_id('f131c586-9448-44a4-a8b0-54ca838aa43e')
     def test_volume_get_nonexistent_volume_id(self):
         # Should not be able to get a non-existent volume

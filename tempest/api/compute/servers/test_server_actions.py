@@ -136,6 +136,7 @@ class ServerActionsTestJSON(base.BaseV2ComputeTest):
         # The server should be power cycled
         self._test_reboot_server('HARD')
 
+    @test.attr(type=['hybrid-smoke'])
     @decorators.skip_because(bug="1014647")
     @test.idempotent_id('4640e3ef-a5df-482e-95a1-ceeeb0faa84d')
     def test_reboot_server_soft(self):

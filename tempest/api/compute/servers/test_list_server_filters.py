@@ -84,6 +84,7 @@ class ListServerFiltersTestJSON(base.BaseV2ComputeTest):
                                         flavor=cls.flavor_ref_alt,
                                         wait_until='ACTIVE')
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('05e8a8e7-9659-459a-989d-92c2f501f4ba')
     @decorators.skip_unless_attr('multiple_images', 'Only one image found')
     def test_list_servers_filter_by_image(self):
@@ -96,6 +97,7 @@ class ListServerFiltersTestJSON(base.BaseV2ComputeTest):
         self.assertNotIn(self.s2['id'], map(lambda x: x['id'], servers))
         self.assertIn(self.s3['id'], map(lambda x: x['id'], servers))
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('573637f5-7325-47bb-9144-3476d0416908')
     def test_list_servers_filter_by_flavor(self):
         # Filter the list of servers by flavor
@@ -107,6 +109,7 @@ class ListServerFiltersTestJSON(base.BaseV2ComputeTest):
         self.assertNotIn(self.s2['id'], map(lambda x: x['id'], servers))
         self.assertIn(self.s3['id'], map(lambda x: x['id'], servers))
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('9b067a7b-7fee-4f6a-b29c-be43fe18fc5a')
     def test_list_servers_filter_by_server_name(self):
         # Filter the list of servers by server name
@@ -118,6 +121,7 @@ class ListServerFiltersTestJSON(base.BaseV2ComputeTest):
         self.assertNotIn(self.s2_name, map(lambda x: x['name'], servers))
         self.assertNotIn(self.s3_name, map(lambda x: x['name'], servers))
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('ca78e20e-fddb-4ce6-b7f7-bcbf8605e66e')
     def test_list_servers_filter_by_active_status(self):
         # Filter the list of servers by server active status
@@ -129,6 +133,7 @@ class ListServerFiltersTestJSON(base.BaseV2ComputeTest):
         self.assertIn(self.s2['id'], map(lambda x: x['id'], servers))
         self.assertIn(self.s3['id'], map(lambda x: x['id'], servers))
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('451dbbb2-f330-4a9f-b0e1-5f5d2cb0f34c')
     def test_list_servers_filter_by_shutoff_status(self):
         # Filter the list of servers by server shutoff status
@@ -146,6 +151,7 @@ class ListServerFiltersTestJSON(base.BaseV2ComputeTest):
         self.assertNotIn(self.s2['id'], map(lambda x: x['id'], servers))
         self.assertNotIn(self.s3['id'], map(lambda x: x['id'], servers))
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('614cdfc1-d557-4bac-915b-3e67b48eee76')
     def test_list_servers_filter_by_limit(self):
         # Verify only the expected number of servers are returned
@@ -153,6 +159,7 @@ class ListServerFiltersTestJSON(base.BaseV2ComputeTest):
         servers = self.client.list_servers(**params)
         self.assertEqual(1, len([x for x in servers['servers'] if 'id' in x]))
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('b1495414-2d93-414c-8019-849afe8d319e')
     def test_list_servers_filter_by_zero_limit(self):
         # Verify only the expected number of servers are returned
@@ -160,6 +167,7 @@ class ListServerFiltersTestJSON(base.BaseV2ComputeTest):
         servers = self.client.list_servers(**params)
         self.assertEqual(0, len(servers['servers']))
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('37791bbd-90c0-4de0-831e-5f38cba9c6b3')
     def test_list_servers_filter_by_exceed_limit(self):
         # Verify only the expected number of servers are returned
@@ -169,6 +177,7 @@ class ListServerFiltersTestJSON(base.BaseV2ComputeTest):
         self.assertEqual(len([x for x in all_servers['servers'] if 'id' in x]),
                          len([x for x in servers['servers'] if 'id' in x]))
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('b3304c3b-97df-46d2-8cd3-e2b6659724e7')
     @decorators.skip_unless_attr('multiple_images', 'Only one image found')
     def test_list_servers_detailed_filter_by_image(self):

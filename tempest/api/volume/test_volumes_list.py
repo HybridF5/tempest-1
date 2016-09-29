@@ -94,7 +94,7 @@ class VolumesV2ListTestJSON(base.BaseVolumeTest):
                     else:
                         self.assertEqual(params[key], volume[key], msg)
 
-    @test.attr(type='smoke')
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('0b6ddd39-b948-471f-8038-4787978747c4')
     def test_volume_list(self):
         # Get a list of Volumes
@@ -103,6 +103,7 @@ class VolumesV2ListTestJSON(base.BaseVolumeTest):
         self.assertVolumesIn(fetched_list, self.volume_list,
                              fields=self.VOLUME_FIELDS)
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('adcbb5a7-5ad8-4b61-bd10-5380e111a877')
     def test_volume_list_with_details(self):
         # Get a list of Volumes with details
@@ -110,6 +111,7 @@ class VolumesV2ListTestJSON(base.BaseVolumeTest):
         fetched_list = self.client.list_volumes(detail=True)['volumes']
         self.assertVolumesIn(fetched_list, self.volume_list)
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('a28e8da4-0b56-472f-87a8-0f4d3f819c02')
     def test_volume_list_by_name(self):
         volume = self.volume_list[data_utils.rand_int_id(0, 2)]
@@ -119,6 +121,7 @@ class VolumesV2ListTestJSON(base.BaseVolumeTest):
         self.assertEqual(fetched_vol[0][self.name],
                          volume[self.name])
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('2de3a6d4-12aa-403b-a8f2-fdeb42a89623')
     def test_volume_list_details_by_name(self):
         volume = self.volume_list[data_utils.rand_int_id(0, 2)]
@@ -129,6 +132,7 @@ class VolumesV2ListTestJSON(base.BaseVolumeTest):
         self.assertEqual(fetched_vol[0][self.name],
                          volume[self.name])
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('39654e13-734c-4dab-95ce-7613bf8407ce')
     def test_volumes_list_by_status(self):
         params = {'status': 'available'}
@@ -137,6 +141,7 @@ class VolumesV2ListTestJSON(base.BaseVolumeTest):
         self.assertVolumesIn(fetched_list, self.volume_list,
                              fields=self.VOLUME_FIELDS)
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('2943f712-71ec-482a-bf49-d5ca06216b9f')
     def test_volumes_list_details_by_status(self):
         params = {'status': 'available'}

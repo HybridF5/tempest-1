@@ -100,6 +100,7 @@ class ServersTestJSON(base.BaseV2ComputeTest):
         found = any([i for i in servers if i['id'] == self.server['id']])
         self.assertTrue(found)
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('585e934c-448e-43c4-acbf-d06a9b899997')
     def test_list_servers_with_detail(self):
         # The created server should be in the detailed list of all servers
@@ -108,6 +109,7 @@ class ServersTestJSON(base.BaseV2ComputeTest):
         found = any([i for i in servers if i['id'] == self.server['id']])
         self.assertTrue(found)
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('cbc0f52f-05aa-492b-bdc1-84b575ca294b')
     @testtools.skipUnless(CONF.validation.run_validation,
                           'Instance validation tests are disabled.')
@@ -260,6 +262,7 @@ class ServersWithSpecificFlavorTestJSON(base.BaseV2ComputeAdminTest):
 
         super(ServersWithSpecificFlavorTestJSON, cls).resource_setup()
 
+    @test.attr(type=['smoke', 'hybrid-smoke'])
     @test.idempotent_id('b3c7bcfc-bb5b-4e22-b517-c7f686b802ca')
     @testtools.skipUnless(CONF.validation.run_validation,
                           'Instance validation tests are disabled.')
