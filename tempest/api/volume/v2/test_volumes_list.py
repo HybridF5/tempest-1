@@ -51,6 +51,7 @@ class VolumesV2ListTestJSON(base.BaseVolumeTest):
             volume = cls.create_volume(metadata=cls.metadata)
             cls.volume_id_list.append(volume['id'])
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('2a7064eb-b9c3-429b-b888-33928fc5edd3')
     def test_volume_list_details_with_multiple_params(self):
         # List volumes detail using combined condition
@@ -172,14 +173,17 @@ class VolumesV2ListTestJSON(base.BaseVolumeTest):
                                  'missing ids %s' % remaining)
                 break
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('e9138a2c-f67b-4796-8efa-635c196d01de')
     def test_volume_list_details_pagination(self):
         self._test_pagination('volumes', ids=self.volume_id_list, detail=True)
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('af55e775-8e4b-4feb-8719-215c43b0238c')
     def test_volume_list_pagination(self):
         self._test_pagination('volumes', ids=self.volume_id_list, detail=False)
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('46eff077-100b-427f-914e-3db2abcdb7e2')
     @decorators.skip_because(bug='1572765')
     def test_volume_list_with_detail_param_marker(self):

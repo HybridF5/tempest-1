@@ -27,7 +27,7 @@ class VolumesV2SnapshotNegativeTestJSON(base.BaseVolumeTest):
         if not CONF.volume_feature_enabled.snapshot:
             raise cls.skipException("Cinder volume snapshots are disabled")
 
-    @test.attr(type=['negative'])
+    @test.attr(type=['negative', 'hybrid-smoke'])
     @test.idempotent_id('e3e466af-70ab-4f4b-a967-ab04e3532ea7')
     def test_create_snapshot_with_nonexistent_volume_id(self):
         # Create a snapshot with nonexistent volume id
@@ -37,7 +37,7 @@ class VolumesV2SnapshotNegativeTestJSON(base.BaseVolumeTest):
                           volume_id=data_utils.rand_uuid(),
                           display_name=s_name)
 
-    @test.attr(type=['negative'])
+    @test.attr(type=['negative', 'hybrid-smoke'])
     @test.idempotent_id('bb9da53e-d335-4309-9c15-7e76fd5e4d6d')
     def test_create_snapshot_without_passing_volume_id(self):
         # Create a snapshot without passing volume id
@@ -46,6 +46,7 @@ class VolumesV2SnapshotNegativeTestJSON(base.BaseVolumeTest):
                           self.snapshots_client.create_snapshot,
                           volume_id=None, display_name=s_name)
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('677863d1-34f9-456d-b6ac-9924f667a7f4')
     def test_volume_from_snapshot_decreasing_size(self):
         # Creates a volume a snapshot passing a size different from the source

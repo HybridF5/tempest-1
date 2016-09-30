@@ -37,6 +37,7 @@ class VolumesListAdminV2TestJSON(base.BaseVolumeAdminTest):
                 volume['id'])['volume']
             cls.volume_list.append(volume_details)
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('5866286f-3290-4cfd-a414-088aa6cdc469')
     def test_volume_list_param_tenant(self):
         # Test to list volumes from single tenant

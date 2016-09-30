@@ -40,6 +40,7 @@ class VolumesV2SnapshotTestJSON(base.BaseVolumeTest):
         waiters.wait_for_volume_status(self.volumes_client,
                                        volume_id, 'available')
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('b467b54c-07a4-446d-a1cf-651dedcc3ff1')
     @test.services('compute')
     def test_snapshot_create_with_volume_in_use(self):
@@ -65,6 +66,7 @@ class VolumesV2SnapshotTestJSON(base.BaseVolumeTest):
         # Delete the snapshot
         self.cleanup_snapshot(snapshot)
 
+    @test.attr(type=['hybrid-smoke'])
     @test.idempotent_id('2a8abbe4-d871-46db-b049-c41f5af8216e')
     def test_snapshot_create_get_list_update_delete(self):
         # Create a snapshot
