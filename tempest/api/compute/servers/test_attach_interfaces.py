@@ -251,7 +251,7 @@ class AttachInterfacesTestJSON(base.BaseV2ComputeTest):
     @test.attr(type='smoke')
     @test.idempotent_id('c7e0e60b-ee45-43d0-abeb-8596fd42a2f9')
     @test.services('network')
-    @decorators.skip_because('caa does not support!')
+    @decorators.skip_because(bug=1234, condition='caa does not support!')
     def test_add_remove_fixed_ip(self):
         # Add and Remove the fixed IP to server.
         server, ifs = self._create_server_get_interfaces()
