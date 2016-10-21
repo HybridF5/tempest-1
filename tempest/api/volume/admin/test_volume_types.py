@@ -18,6 +18,7 @@ from tempest.common.utils import data_utils
 from tempest.common import waiters
 from tempest import config
 from tempest import test
+from tempest.lib import decorators
 
 CONF = config.CONF
 
@@ -31,6 +32,7 @@ class VolumeTypesV2Test(base.BaseVolumeAdminTest):
             self.admin_volume_types_client.list_volume_types()['volume_types']
         self.assertIsInstance(body, list)
 
+    @decorators.skip_because(bug='1317133')
     @test.idempotent_id('c03cc62c-f4e9-4623-91ec-64ce2f9c1260')
     def test_volume_crud_with_volume_type_and_extra_specs(self):
         # Create/update/get/delete volume with volume_type and extra spec.
