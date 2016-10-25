@@ -28,7 +28,7 @@ class HostsAdminTestJSON(base.BaseV2ComputeAdminTest):
     @test.idempotent_id('9bfaf98d-e2cb-44b0-a07e-2558b2821e4f')
     def test_list_hosts(self):
         hosts = self.client.list_hosts()['hosts']
-        self.assertTrue(len(hosts) >= 2, str(hosts))
+        self.assertTrue(len(hosts) >= 1, str(hosts))
 
     @test.idempotent_id('5dc06f5b-d887-47a2-bb2a-67762ef3c6de')
     def test_list_hosts_with_zone(self):
@@ -57,7 +57,7 @@ class HostsAdminTestJSON(base.BaseV2ComputeAdminTest):
     def test_show_host_detail(self):
         hosts = self.client.list_hosts()['hosts']
 
-        hosts = [host for host in hosts if host['service'] == 'compute']
+        hosts = [host for host in hosts if host['service'] == 'jacket-worker']
         self.assertTrue(len(hosts) >= 1)
 
         for host in hosts:

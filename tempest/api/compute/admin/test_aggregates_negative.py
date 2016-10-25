@@ -37,7 +37,7 @@ class AggregatesAdminNegativeTestJSON(base.BaseV2ComputeAdminTest):
 
         hosts_all = cls.os_adm.hosts_client.list_hosts()['hosts']
         hosts = ([host['host_name']
-                 for host in hosts_all if host['service'] == 'compute'])
+                 for host in hosts_all if host['service'] == 'jacket-worker'])
         cls.host = hosts[0]
 
     @test.attr(type=['negative'])
